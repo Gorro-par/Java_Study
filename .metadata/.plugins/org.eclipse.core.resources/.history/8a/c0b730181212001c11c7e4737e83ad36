@@ -1,0 +1,21 @@
+package db;
+
+
+public class Test{
+	
+	class A {
+		int i = 10;
+		
+		class B extends A{
+		int i = 20;
+		void mb(){
+		int i = 30;
+		}
+	public static void main(String[] args) {
+		System.out.println(i);
+		System.out.println(i);
+		
+		
+	}
+	}
+}

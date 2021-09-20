@@ -1,0 +1,14 @@
+package °úÁ¦;
+
+public class BookDTO {
+	private String isbn;
+	private String title;
+	private String author;
+	private String publisher;
+	private String price;
+	private String desc;
+	
+	
+
+	
+}

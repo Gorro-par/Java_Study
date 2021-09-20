@@ -1,0 +1,28 @@
+package db;
+
+public class DBEx20 {
+
+	/* JOIN
+	 JOIN 은 데이터베이스 내의 여러 테이블에서 가져온 레코드를 조합하여
+	 하나의 테이블이나 결과 집합으로 표현해 줍니다.
+	 이러한 JOIN은 보통 SELECT 문과 함께 자주 사용됩니다.
+	 표준 SQL에서는 레코드르르 조합하는 방식에 따라 JOIN을 다음과 같이 구분합니다.
+	 1. CROSS JOIN
+	 2. EQUI JOIN
+	 3. LEFT JOIN
+	 4. RIGHT JOIN
+	 [실습 테이블 만들기] : JITEST1
+	 CREATE TABLE JNTEST1(
+	 	ID INT PRIMARY KEY auto_increment,
+	 	PHONE VARCHAR(15),
+	 	NAME VARChAR(10)
+	 	);
+	 [레코드 추가]
+	 
+	 */
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

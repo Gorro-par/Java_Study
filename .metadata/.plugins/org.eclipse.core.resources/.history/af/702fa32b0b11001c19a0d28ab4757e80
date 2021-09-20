@@ -1,0 +1,69 @@
+package db;
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+public class DBEx18 {
+	
+	/*
+	 BETWEEN (범위) : a AND b에서 a와 b를 포함한 (inclusive)
+	 					그 사이의 모든 값에 해당하는지 여부를 조건으로 한다.
+	 [실슽테이블 만들기] : BETWEST
+	 CREATE TABLE BWTEST (
+	 	IDX INT,
+	 	BIRTH DATE,
+	 	NAME VARCHAR(10));
+	 */
+	public static void main(String[] args) {
+		Connection conn = DBAction.getInstance().getConnection();
+		Statement stmt = null;
+		ResultSet rs = null;
+		ResultSetMetaData rsmd = null;
+		String sql = insert();
+		try {
+//			insert!
+			int result = stmt.executeUpdate(sql);
+			String msg = result > -1 ? "성공" : "실패";
+			System.out.println(msg);
+			
+			stmt = conn.createStatement();
+//			rs = stmt.executeQuery(sql);
+//			rsmd = rs.getMetaData();
+//			int cols = rsmd.getColumnCount();
+//			for(int i = 1; i <= cols; i++) {
+//				String columnName = rsmd.getCatalogName(i);
+//				System.out.print(columnName + "\t");
+//			}
+//			System.out.println("\n-------------------------------------------------------");
+//			while (rs.next()) {
+//				for (int i = 1; i <= cols; i++) {
+//					System.out.print(rs.getString(i) + "\t");
+//				}
+//				System.out.println();
+//			}
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if (rs != null)rs.close();
+				if (stmt != null)stmt.close();
+				if (conn != null)conn.close();
+			}catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	public static String insert() {
+		String sql = "INSERT INTO BWTEST VALUSE(1, '2021-01-01', '홍길동')";
+//		String sql = "INSERT INTO BWTEST VALUSE(2, '2021-02-02', '이순신')";
+//		String sql = "INSERT INTO BWTEST VALUSE(3, '2021-03-03', '만득이')";
+//		String sql = "INSERT INTO BWTEST VALUSE(4, '2021-04-04', '개똥이')";
+//		String sql = "INSERT INTO BWTEST VALUSE(5, '2021-05-05', '칠득이')";
+//		String sql = "INSERT INTO BWTEST VALUSE(6, '2021-06-06', '갑돌이')";
+//		String sql = "INSERT INTO BWTEST VALUSE(7, '2021-07-07', '갑순이')";
+		return sql;
+	}
+}

@@ -1,0 +1,11 @@
+package db;
+
+public class Test{
+public String getDetails(){ return "String";}
+public void getDetails(char c){}
+public void getDetails(){}//1
+void getDetails(String s){}//2
+public void getDetails(int i){}//3
+void getDetails(double d){}//4
+
+}

@@ -1,0 +1,94 @@
+package db;
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+public class DBEx20 {
+
+	/* JOIN
+	 JOIN 은 데이터베이스 내의 여러 테이블에서 가져온 레코드를 조합하여
+	 하나의 테이블이나 결과 집합으로 표현해 줍니다.
+	 이러한 JOIN은 보통 SELECT 문과 함께 자주 사용됩니다.
+	 표준 SQL에서는 레코드르르 조합하는 방식에 따라 JOIN을 다음과 같이 구분합니다.
+	 1. CROSS JOIN
+	 2. EQUI JOIN
+	 3. LEFT JOIN
+	 4. RIGHT JOIN
+	 [실습 테이블 만들기] : JITEST1
+	 CREATE TABLE JNTEST1(
+	 	ID INT PRIMARY KEY auto_increment,
+	 	PHONE VARCHAR(15),
+	 	NAME VARChAR(10)
+	 	);
+	 [레코드 추가]
+	 	String sql = "INSERT INTO JNTEST1 VALUES('010-1234-5678', '홍길동')";
+		String sql = "INSERT INTO JNTEST1 VALUES('030-1234-5678', '이순신')";
+		String sql = "INSERT INTO JNTEST1 VALUES('050-1234-5678', '만득이')";
+		String sql = "INSERT INTO JNTEST1 VALUES('014-1234-5678', '개똥이')";
+		String sql = "INSERT INTO JNTEST1 VALUES('020-1234-5678', '칠득이')";
+		String sql = "INSERT INTO JNTEST1 VALUES('012-1234-5678', '갑돌이')";
+		
+	 [실습 테이블 만들기] : JITEST2
+	 CREATE TABLE JNTEST2(
+	 	ID INT,
+	 	NAME DATE,
+	 	NAME VARChAR(10)
+	 	);
+	 [레코드 추가]
+	 	String sql = "INSERT INTO JNTEST2 VALUES(1,'2001-01-01', '축구선수')";
+		String sql = "INSERT INTO JNTEST2 VALUES(2,'2001-01-02', '농구선수')";
+		String sql = "INSERT INTO JNTEST2 VALUES(3,'2001-01-03', '배구선수')";
+		String sql = "INSERT INTO JNTEST2 VALUES(7,'2001-01-05', '배구선수2')";
+	 */
+
+		public static void main(String[] args) {
+			DBAction db = DBAction.getInstance();
+			Connection conn = db.getConnection();
+			Statement stmt = null;
+			ResultSet rs = null;
+			ResultSetMetaData rsmd = null;
+//			String sql = insert();
+			String sql = select();
+			try {
+//				select
+				stmt = conn.createStatement();
+				rs = stmt.executeQuery(sql);
+				rsmd = rs.getMetaData();
+				int cols = rsmd.getColumnCount();
+				for(int i = 1; i <= cols; i++) {
+					String columnName = rsmd.getCatalogName(i);
+					System.out.print(columnName + "\t");
+				}
+				System.out.println("\n-------------------------------------------------------");
+				while (rs.next()) {
+					for (int i = 1; i <= cols; i++) {
+						System.out.print(rs.getString(i) + "\t");
+					}
+					System.out.println();
+				}
+			}catch (Exception e) {
+				e.printStackTrace();
+			}finally {
+				try {
+					if (rs != null)rs.close();
+					if (stmt != null)stmt.close();
+					if (conn != null)conn.close();
+				}catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			
+		}	
+		
+		public static String select() {
+			Scanner scan = new Scanner(System.in);
+			System.out.print("동을 입력시켜주세요");
+			String dong = scan.next();
+			String sql = "SELECT ZIPCODE, SIDO, GUGUN, DONG, RI, BLDG, BUNJI, SEQ FROM ZIPCODE WHERE DONG LIKE '" + dong + "'"; 
+			return sql;
+			
+		}
+	}

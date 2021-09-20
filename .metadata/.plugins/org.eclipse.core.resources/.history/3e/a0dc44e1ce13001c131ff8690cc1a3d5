@@ -1,0 +1,44 @@
+package 과제;
+
+public class BookTest {
+	public static void main(String[] args) {
+		BookDTO dto = new BookDTO [][];
+		dto.setIsbn("21424");
+		dto.setIsbn("33455");
+		dto.setIsbn("55355");
+		dto.setIsbn("35332");
+		dto.setIsbn("35355");
+		
+		dto.setTitle("Java Basic");
+		dto.setTitle("JDBC Pro");
+		dto.setTitle("Servlet/JSP");
+		dto.setTitle("Android App");
+		dto.setTitle("OOAD 분석,설계");
+		
+		dto.setAuthor("김하나");
+		dto.setAuthor("김철수");
+		dto.setAuthor("박자바");
+		dto.setAuthor("홍길동");
+		dto.setAuthor("소나무");
+		
+		dto.setPublisher("Jaen.kr");
+		dto.setPublisher("Jaen.kr");
+		dto.setPublisher("Jaen.kr");
+		dto.setPublisher("Jaen.kr");
+		dto.setPublisher("Jaen.kr");
+		
+		dto.setPrice("15000");
+		dto.setPrice("23000");
+		dto.setPrice("41000");
+		dto.setPrice("25000");
+		dto.setPrice("30000");
+		
+		dto.setDesc("Java 기본 문법");
+		dto.setDesc("");
+		dto.setDesc("Model2 기반");
+		dto.setDesc("Lightweight framework");
+		dto.setDesc("");
+		
+		System.out.println(dto.getTitle());
+	}
+}

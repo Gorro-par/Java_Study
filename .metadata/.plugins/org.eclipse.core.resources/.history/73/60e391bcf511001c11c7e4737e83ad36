@@ -1,0 +1,160 @@
+package Bank;
+
+import java.sql.Connection;
+import java.sql.Statement;
+import java.util.Scanner;
+
+
+public class Bankmeu {
+
+	static java.util.Scanner scanner = new java.util.Scanner(System.in);
+	static int money[] = new int[50000000];
+	static int username = 0;
+	static boolean go = true;
+	static int cnt = 0;
+	static Member[] member_arr;
+	static Member member[] = new Member[50000000];
+	static String driver = "com.mysql.cj.jdbc.Driver";
+	static String url = "jdbc:mysql://localhost:3306/app?characterEncoding=UTF-8&serverTimezone=UTC";
+	static Connection conn = null;
+	static Statement stmt = null;
+
+	static void login() {
+		do {
+			System.out.println("┌───────────┬───────────┬───────────┬───────────┐");
+			System.out.println("│ 1. 회원가입 │ 2. 로그인     │ 3. 회원목록  │ 4. 종료        │");
+			System.out.println("└───────────┴───────────┴───────────┴───────────┘");
+			System.out.print("선택 > ");
+			int loginstart = scanner.nextInt();
+			switch (loginstart) {
+
+			case 1:
+				users();
+				break;
+
+			case 2:
+				break;
+
+			case 3:
+				break;
+
+			case 4:
+				System.out.println();
+				System.out.println("프로그램을 종료합니다...");
+				go = false;
+				break;
+
+			default:
+				System.out.println("잘 못 입력 하셨습니다.");
+			}
+			System.out.println();
+
+		} while (go);
+		System.out.println("종료하였습니다.");
+		cnt = 5;
+	}
+
+	static void mainmenu() {
+		do {
+//			메인
+			System.out.println("┌───────────┬───────────┬───────────┬───────────┐");
+			System.out.println("│ 1. 예금    │ 2. 출금    │ 3. 잔고    │ 4. 종료    │");
+			System.out.println("└───────────┴───────────┴───────────┴───────────┘");
+			System.out.print("선택 > ");
+			int menuNum = scanner.nextInt();
+			System.out.print("사용자 입력 > ");
+			username = scanner.nextInt() - 1;
+			switch (menuNum) {
+
+			case 1:
+				System.out.print("예금 : ");
+				money[username] += scanner.nextInt();
+				System.out.print("남은 잔고는 " + money[username] + "원 입니다.");
+				break;
+
+			case 2:
+				int No = 0;
+
+				System.out.print("출금 : ");
+				No = scanner.nextInt();
+				money[username] -= No;
+
+				if (money[username] >= 0) {
+					System.out.print("남은 잔고는 " + money[username] + "원 입니다.");
+				} else {
+					money[username] += No;
+					System.out.println("잔고가 없습니다.");
+					System.out.print("남은 잔고는 " + money[username] + "원 입니다.");
+				}
+				break;
+
+			case 3:
+				System.out.print("잔고 > " + money[username] + "원");
+				break;
+
+			case 4:
+				System.out.println();
+				System.out.println("프로그램을 종료합니다...");
+				go = false;
+				break;
+
+			default:
+				System.out.println("잘 못 입력 하셨습니다.");
+			}
+			System.out.println();
+
+		} while (go);
+		System.out.println("종료하였습니다.");
+	}
+	
+	public static String users() {
+		boolean aa = true;
+		String sql = null;
+		Scanner sc = new Scanner(System.in);
+		System.out.print("ID : ");
+		String id = sc.next();
+		System.out.print("PW : ");
+		String pw = sc.next();
+		System.out.println("비밀번호를 다시 입력하세요.");
+		System.out.print("PW : ");
+		String pw2 = sc.next();
+	
+		if (pw == pw2) {
+			sql = "insert into DBTEST values('" + id + "," + pw + "')";
+			System.out.println("성공적으로 회원가입이 되셨습니다.");
+		} else {
+			System.out.println("비밀번호가 일치하지 않습니다.");
+		}
+		return sql;
+	}
+//	static void users() {	
+////		회원가입
+//		System.out.print("이름 : ");
+//		String name = scanner.next();
+//		
+//		System.out.print("아이디 : ");
+//		String id = scanner.next();
+//		
+//		System.out.print("비밀번호 : ");
+//		String pw = scanner.next();
+//		
+//		Member member = new Member (name, id, pw, 0);
+//		//member1[cnt++] = member;
+////		member[member.getBalance()]
+//		System.out.println("-회원정보-");
+//		System.out.println("이름 : " + member.getName());
+//		System.out.println("아이디 : " + member.getId());
+//		System.out.println("비밀번호 : " + member.getPw());
+//		System.out.println();
+//
+//	}
+
+	public static void main(String[] args) {
+		login();
+		if (cnt == 5) {
+			System.exit(0);
+		} else {
+			mainmenu();
+		}
+	}
+}

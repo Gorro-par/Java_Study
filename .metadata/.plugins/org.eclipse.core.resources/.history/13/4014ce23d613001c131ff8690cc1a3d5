@@ -1,0 +1,46 @@
+package 과제2;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.Statement;
+
+/*
+ CREATE TABLE BOOKDTO(
+         ibsn number(5) primary key,
+         title varchar2(50) not null,
+         author varchar2(250) not null,
+         publisher varchar2(50) not null,
+         price number(6) not null,
+         desc varchar2(200),
+         publish_date varchar2(10)
+ 
+ 
+ )
+ 
+ */
+public class CREATE_DB{
+    public static void main(String[] args) {
+     String driver ="com.mysql.cj.jdbc.Driver"; //mysq1
+    String url = "jdbc:mysql://localhost:3306/app?";
+    Connection conn = null;
+    Statement stmt = null;
+    try {
+       Class.forName(driver);
+       System.out.println("로딩 성공");
+       conn = DriverManager.getConnection(url, "root", "java");
+       System.out.println("연결 성공");
+       String sql = "CREATE TABLE BOOKDTO("
+               + "         ibsn INT primary key,"
+               + "         title varchar(50) not null,"
+               + "         author varchar(250) not null,"
+               + "         publisher varchar(50) not null,"
+               + "         price INT not null,"
+               + "         desc2 varchar(200),"
+               + "         publish_date varchar(10)"
+               + ")";
+       stmt = conn.createStatement();
+       stmt.executeUpdate(sql);
+    }catch(Exception e) {
+         e.printStackTrace();
+    }
+}}

@@ -1,0 +1,21 @@
+package 과제;
+
+public class BookTest {
+	public static void main(String[] args) {
+		BookDTO dto = new BookDTO();
+		dto.setIsbn(21424);
+		dto.setIsbn(33455);
+		dto.setIsbn(55355);
+		dto.setIsbn(35332);
+		dto.setIsbn(35355);
+		dto.setTitle("Java Basic");
+		dto.setTitle("JDBC Pro");
+		dto.setTitle("Servlet/JSP");
+		dto.setTitle("Android App");
+		dto.setTitle("OOAD 분석,설계");
+		for (int i = 1; i <= 5; i++) {
+			System.out.print(dto. + "\t");
+		}
+		
+	}
+}
